@@ -1,0 +1,31 @@
+docker run -it --name VolumeDirImg -v /root/MyVOlDir centos:7 /bin/bash
+
+docker network ls
+
+docker network create mynetwork007
+
+docker network inspect mynetwork007
+
+docker network rm mynetwork007
+
+docker network inspect mynetwork007
+
+docker network create --subnet 10.10.0.0/24 --gateway 10.10.0.1 mynetwork007
+
+docker network inspect mynetwork007
+
+docker network create --subnet 11.11.0.0/16 --gateway 11.11.1.1 --ip-range=11.11.1.2/24 --label=host4network --driver=bridge mynetwork008
+
+docker netwrok inspect mynetwork008
+
+docker run -it --name netimg001 --net mynetwork008 centos:7 /bin/bash
+
+docker run -it --name netimg002 --net mynetwork008 --ip 11.11.1.100  centos:7 /bin/bash
+
+docker network ls
+
+docker network inspect mynetwork008
+
+docker run -itd --name netimg003 --net mynetwork008 --ip 11.11.1.100  centos:7 /bin/bash
+
+docker network inspect mynetwork008
