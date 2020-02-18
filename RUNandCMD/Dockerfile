@@ -1,4 +1,4 @@
-FROM docker.io/centos:7
+FROM docker/centos:latest
 MAINTAINER roshan < roshan@linuxacedamy.com >
 RUN yum update -y
 RUN yum install httpd net-tools wget -y
