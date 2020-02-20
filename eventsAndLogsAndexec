@@ -1,0 +1,10 @@
+docker kill admiring_perlman
+docker events
+docker events --filter event=kill
+docker events --filter event=kill --since '1h'
+
+docker exec vigorous_heisenberg ps | grep bash
+docker exec -i -t vigorous_heisenberg /bin/bash
+
+docker stats vigorous_heisenberg
+docker top vigorous_heisenberg
