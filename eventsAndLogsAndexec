@@ -1,6 +1,8 @@
+docker exec -it ngingx_running_commit1 bash
+
 docker kill admiring_perlman
 docker events
-docker events --filter event=kill
+docker events --filter event=kill --filter event=attach
 docker events --filter event=kill --since '1h'
 
 docker exec vigorous_heisenberg ps | grep bash
@@ -8,3 +10,18 @@ docker exec -i -t vigorous_heisenberg /bin/bash
 
 docker stats vigorous_heisenberg
 docker top vigorous_heisenberg
+
+docker run -itd -p 127.0.0.1:8082:80 --name Nginx_port_8081  ubuntu_nginx_commit/nginx:latest
+docker run -itd -p 127.0.0.1:8082:80 --name Nginx_port_8082  ubuntu_nginx_commit/nginx:latest
+docker run -itd -p 80 --name ngingx_running_commit1 ubuntu_nginx_commit/nginx_running:v4 bash
+elinks http://localhost:8082/
+
+docker save mycontainer5 > mycontainer5.tar.gz
+docker save hello-world > hello-world.tar.gz
+docker load --input hello-world.tar.gz
+ 
+docker commit -m "Running Images With Nginx" --change='CMD["nginx","-DFOREGROUND"]' -c "EXPOSE 80" 87c6c91bb84d RunningImagesWithNginx
+docker commit -m "Running Images With Nginx" --change='CMD["nginx","-DFOREGROUND"]' -c "EXPOSE 80" 87c6c91bb84d nginx_images_with_nginx
+
+docker tag nginxserver ubuntu_nginx_tag/nginx:latest
+docker tag ubuntu_nginx/nginx ubuntu_nginx_tag/nginx:latest
