@@ -11,9 +11,9 @@ docker exec -i -t vigorous_heisenberg /bin/bash
 docker stats vigorous_heisenberg
 docker top vigorous_heisenberg
 
-docker run -itd -p 127.0.0.1:8082:80 --name Nginx_port_8081  ubuntu_nginx_commit/nginx:latest
-docker run -itd -p 127.0.0.1:8082:80 --name Nginx_port_8082  ubuntu_nginx_commit/nginx:latest
-docker run -itd -p 80 --name ngingx_running_commit1 ubuntu_nginx_commit/nginx_running:v4 bash
+docker run -itd -p 127.0.0.1:8082:80 --name Nginx_port_8081  ubuntu_nginx_commit/nginx:latest /bin/bash
+docker run -itd -p 127.0.0.1:8082:80 --name Nginx_port_8082  ubuntu_nginx_commit/nginx:latest /bin/bash
+docker run -itd -p 8080:80 --name ngingx_running_commit1 ubuntu_nginx_commit/nginx_running:v4 /bin/bash
 elinks http://localhost:8082/
 
 docker save mycontainer5 > mycontainer5.tar.gz
