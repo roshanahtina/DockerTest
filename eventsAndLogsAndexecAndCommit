@@ -25,3 +25,8 @@ docker commit -m "Running Images With Nginx" --change='CMD["nginx","-DFOREGROUND
 
 docker tag nginxserver ubuntu_nginx_tag/nginx:latest
 docker tag ubuntu_nginx/nginx ubuntu_nginx_tag/nginx:latest
+
+## Network Adaptor add
+ip link add br20 type bridge
+ip link set br20 up
+docker.io -d -b br20 &
