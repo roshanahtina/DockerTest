@@ -29,3 +29,17 @@ docker network inspect mynetwork008
 docker run -itd --name netimg003 --net mynetwork008 --ip 11.11.1.100  centos:7 /bin/bash
 
 docker network inspect mynetwork008
+
+## Network Adaptor add
+ip link add br20 type bridge
+ip link set br20 up
+docker.io -d -b br20 &
+
+#vim /etc/netwrok/interface
+auto br20
+iface br20 inet static
+      address 10.10.100.1
+      netmask 255.255.255.0
+      bridge_ports dummy0
+      bridge_stp off
+      bridge_fd 0
