@@ -1,0 +1,25 @@
+---
+docker volume create test-volume01
+docker volume inspect test-volume01
+docker volume rm test-volume01
+docker volume create -h
+docker volume create test-vol
+docker volume inspect test-vol
+docker volume ls
+docker volume create mysql_data
+
+mkdir target
+
+docker container run -d \
+  --name nginx-bind-mount1 \
+  --mount type=bind,source="$(pwd)"/target,target=/app \
+  nginx
+  
+  docker run -it --name app-database \ 
+  --mount type=volume,source=mysql_data,target=/var/lib/mysql \ 
+  -e MYSQL_ROOT_PASSWORD=P4sSw0rd0! mysql:latest
+  
+  docker container run -d \
+ --name nginx-bind-mount3 \
+ -v "$(pwd)"/nginx/nginx.conf:/etc/nginx/nginx.conf \
+ nginx
