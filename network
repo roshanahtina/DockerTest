@@ -30,6 +30,12 @@ docker run -itd --name netimg003 --net mynetwork008 --ip 11.11.1.100  centos:7 /
 
 docker network inspect mynetwork008
 
+docker network connect br01 network-test03
+
+docker network disconnect br01 network-test03
+
+docker network create -d bridge --internal localhost
+
 ## Network Adaptor add
 ip link add br20 type bridge
 ip link set br20 up
